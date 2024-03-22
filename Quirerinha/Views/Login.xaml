@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quirerinha.Views.Login"
+             BackgroundColor="Gray"
+             Title="Login">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="20">
+                    <Image Source="logo_sisfaixa.png" HeightRequest="260" WidthRequest="420" HorizontalOptions="Center" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" Margin="0,0,0,-40" >
+                    <Label Text="INFORME SEUS DADOS" FontSize="25" TextColor="White" HorizontalTextAlignment="Center" Margin="20" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="50,40,50,0" >
+                    <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="70" WidthRequest="70" CornerRadius="50" BackgroundColor="#A9A9A9Gus">
+                        <Image Source="user.png" HeightRequest="65" WidthRequest="65" />
+                    </Frame>
+
+                    <Frame HeightRequest="45" Margin="-30,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand" CornerRadius="20" BackgroundColor="#A9A9A9" >
+                        <Entry x:Name="tbUsuario"  Margin="40,0,40,0" VerticalOptions="Center" Placeholder="Usuário" Keyboard="Text" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"  />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="50,20,50,20">
+                    <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="70" WidthRequest="70" CornerRadius="50" BackgroundColor="#A9A9A9" >
+                        <Image Source="lock.png" HeightRequest="60" WidthRequest="60" />
+                    </Frame>
+
+                    <Frame HeightRequest="45" Margin="-30,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand" CornerRadius="20" BackgroundColor="#A9A9A9">
+                        <Entry x:Name="tbRemuneracao" Margin="40,0,40,0" VerticalOptions="Center" Placeholder="Remuneração" Keyboard="Numeric" TextColor="White" FontSize="20" HorizontalTextAlignment="Center" />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0" >
+                    <Button x:Name="btnLogin" Text="ENTRAR" TextColor="White" FontSize="20" FontFamily="Tahoma" FontAttributes="Bold"
+                        HeightRequest="130" WidthRequest="130" CornerRadius="100" BackgroundColor="#474646" BorderWidth="2" BorderColor="White"  />
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

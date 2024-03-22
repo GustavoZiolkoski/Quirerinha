@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quirerinha.Views.PaginaPrincipal">
+    <ShellContent
+    Title="Inicio" 
+    FlyoutItemIsVisible="true" 
+    Shell.FlyoutBehavior="Flyout"
+
+    Route="Home" />
+    <!--<ShellContent FlyoutItemIsVisible="true" 
+    Shell.FlyoutBehavior="Flyout" Title="Mapa" ContentTemplate="{DataTemplate local2:Mapa}" Route="Mapa"/>-->
+    <ShellContent FlyoutItemIsVisible="true" 
+
+                  Route="Config"/>
+    <ShellContent FlyoutItemIsVisible="true" 
+
+        Route="Login"/>
+</Shell>
