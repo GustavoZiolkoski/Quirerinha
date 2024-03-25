@@ -30,7 +30,7 @@
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="50,40,50,0" >
-                    <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="70" WidthRequest="70" CornerRadius="50" BackgroundColor="#A9A9A9Gus">
+                    <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="70" WidthRequest="70" CornerRadius="50" BackgroundColor="#A9A9A9">
                         <Image Source="user.png" HeightRequest="65" WidthRequest="65" />
                     </Frame>
 
@@ -41,7 +41,7 @@
 
                 <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="50,20,50,20">
                     <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="70" WidthRequest="70" CornerRadius="50" BackgroundColor="#A9A9A9" >
-                        <Image Source="lock.png" HeightRequest="60" WidthRequest="60" />
+                        <Image Source="remuneracao.png" HeightRequest="60" WidthRequest="60" />
                     </Frame>
 
                     <Frame HeightRequest="45" Margin="-30,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand" CornerRadius="20" BackgroundColor="#A9A9A9">
