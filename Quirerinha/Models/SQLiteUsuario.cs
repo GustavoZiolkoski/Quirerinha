@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Quirerinha.Models
 {
-    internal class SQLiteUsuario
+    public class SQLiteUsuario
     {
         SQLiteAsyncConnection db;
 
         public SQLiteUsuario(string dbPath)
         {
             db = new SQLiteAsyncConnection(dbPath);
-            db.CreateTableAsync<Models.Usuario>().Wait();
+            db.CreateTableAsync<Models.Usuarios>().Wait();
         }
 
-        public Task<int> SaveItemAsync(Models.Usuario registro)
+        public Task<int> SaveItemAsync(Models.Usuarios registro)
         {
             if (registro.ID != 0)
             {
@@ -30,7 +30,7 @@ namespace Quirerinha.Models
         }
 
         //Delete
-        public Task<int> DeleteItemAsync(Models.Usuario registro)
+        public Task<int> DeleteItemAsync(Models.Usuarios registro)
         {
             return db.DeleteAsync(registro);
         }
@@ -38,37 +38,37 @@ namespace Quirerinha.Models
         //Delete all
         public void DeleteAllUsers()
         {
-            db.DropTableAsync<Models.Usuario>().Wait();
-            db.CreateTableAsync<Models.Usuario>().Wait();
+            db.DropTableAsync<Models.Usuarios>().Wait();
+            db.CreateTableAsync<Models.Usuarios>().Wait();
         }
-        public Task<Models.Usuario> GetItemAsync(int personId)
+        public Task<Models.Usuarios> GetItemAsync(int personId)
         {
-            return db.Table<Models.Usuario>().Where(i => i.ID == personId).FirstOrDefaultAsync();
+            return db.Table<Models.Usuarios>().Where(i => i.ID == personId).FirstOrDefaultAsync();
         }
 
         //Read All Items  
-        public Task<List<Models.Usuario>> GetItemsAsync()
+        public Task<List<Models.Usuarios>> GetItemsAsync()
         {
-            return db.Table<Models.Usuario>().ToListAsync();
+            return db.Table<Models.Usuarios>().ToListAsync();
         }
 
-        /*public async Task<Usuario> GetLastLoggedInUser()
+        public async Task<Usuarios> GetLastLoggedInUser()
         {
-            return await db.Table<Usuario>()
-            .OrderByDescending(u => u.UltimoLogin)
+            return await db.Table<Usuarios>()
+            //.OrderByDescending(u => u.UltimoLogin)
             .FirstOrDefaultAsync();
         }
 
 
-        public Task<Models.Usuario> GetItemAsync2(string login, string senha)
+        public Task<Models.Usuarios> GetItemAsync2(string login, double senha)
         {
-            return db.Table<Models.Usuario>()
+            return db.Table<Models.Usuarios>()
                 .Where(r => r.Nome == login)
-                .Where(r => r.Senha == senha)
+                .Where(r => r.Remuneracao == senha)
                 .FirstOrDefaultAsync();
-        }*/
+        }
 
-        public Task<int> SaveItemAsyncLogin(Models.Usuario registro)
+        public Task<int> SaveItemAsyncLogin(Models.Usuarios registro)
         {
 
 
