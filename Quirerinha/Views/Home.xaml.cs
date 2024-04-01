@@ -10,28 +10,36 @@ namespace Quirerinha.Views
         {
             InitializeComponent();
             LoadUserData();
+            btnCadastrar.Clicked += BtnCadastrar_Clicked;
+            btnGestao.Clicked += BtnGestao_Clicked;
         }
 
         private async void LoadUserData()
         {
             try
             {
-                // Busca o usuário mais recentemente cadastrado
                 var usuario = await App.SQLiteDbUsuario.GetLastLoggedInUser();
 
                 if (usuario != null)
                 {
-                    // Define os valores dos campos na página
                     lblUsuario.Text = usuario.Nome;
 
-                    // Formata a remuneração usando uma cultura específica para exibir a vírgula como separador decimal
-                    lblRemuneracao.Text = usuario.Remuneracao.ToString("N2", CultureInfo.GetCultureInfo("pt-BR")) + " Reais";
+                    lblRemuneracao.Text = usuario.Remuneracao.ToString("N2", CultureInfo.GetCultureInfo("pt-BR")) + " reais";
                 }
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Erro", $"Ocorreu um erro ao carregar os dados do usuário: {ex.Message}", "OK");
             }
+        }
+        private void BtnGestao_Clicked(object sender, EventArgs e)
+        {
+            //Navigation.PushAsync(new Gestao());
+        }
+
+        private void BtnCadastrar_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Cadastro());
         }
     }
 }

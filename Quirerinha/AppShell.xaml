@@ -6,17 +6,18 @@
     xmlns:local="clr-namespace:Quirerinha"
     xmlns:local2="clr-namespace:Quirerinha.Views"    
     Shell.FlyoutBehavior="Disabled"
-    Title="Quirerinha">
+    BackgroundColor="#141854"
+    Title="Quirerinha"
+    TitleColor="White"
+    >
 
     <ShellContent
-    Title="Inicio" 
+    Title="Início"
     FlyoutItemIsVisible="true" 
     Shell.FlyoutBehavior="Flyout"
     ContentTemplate="{DataTemplate local2:Home}"
     Route="Home" />
-    <ShellContent FlyoutItemIsVisible="true" 
-    Shell.FlyoutBehavior="Flyout" Title="Configurações" ContentTemplate="{DataTemplate local2:PaginaPrincipal}" Route="Config"/>
-    <ShellContent FlyoutItemIsVisible="true" 
-    />
+    <!--<ShellContent FlyoutItemIsVisible="true" Shell.FlyoutBehavior="Flyout" Title="Configurações" ContentTemplate="{DataTemplate local2:PaginaPrincipal}" Route="Config"/>-->
+
 
 </Shell>
