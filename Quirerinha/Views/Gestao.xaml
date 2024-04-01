@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quirerinha.Views.Gestao"
+             BackgroundColor="Gray"
+             Title="Gestao">
+    <Grid>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Row="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
+                    <Image Source="gestao.png"
+                 HorizontalOptions="FillAndExpand" VerticalOptions="Start" 
+                 Aspect="AspectFit" WidthRequest="400" />
+
+                </StackLayout>
+
+                <!--<StackLayout Grid.Row="2" Grid.Column="1">
+                    <Button
+                    Text="ENVIAR"
+                    x:Name="btnEnviar"
+                    FontSize="20"
+                    BackgroundColor="#A9A9A9"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    BorderColor="White"
+                    BorderWidth="2"
+                    HeightRequest="130" 
+                    WidthRequest="130" 
+                    CornerRadius="100"
+                    HorizontalOptions="Center"
+                    Margin="0,50,0,40" />
+                </StackLayout>
+                -->
+
+                <CollectionView x:Name="myCollectionView"
+                            Margin="20,10,20,10"
+                            EmptyView="Sem dados para visualizar"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="3">
+
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                        <SwipeItem Text="Remover" CommandParameter="{Binding .}" Invoked="Remover_Invoked" BackgroundColor="DarkRed" />
+                                        <SwipeItem Text="Editar" CommandParameter="{Binding .}" Invoked="Editar_Invoked" BackgroundColor="#CEE8C3"/>
+                                        <SwipeItem Text="Detalhes" CommandParameter="{Binding .}" Invoked="Detalhar_Invoked" BackgroundColor="#474646"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <!--<SwipeView.LeftItems>
+                                <SwipeItem Text="Duplicar" CommandParameter="{Binding .}" Invoked="Duplicar_Invoked" BackgroundColor="White"/>
+                            </SwipeView.LeftItems>-->
+                                <StackLayout Padding="5">
+                                    <Frame BackgroundColor="#474646" BorderColor="white" HasShadow="True" CornerRadius="12">
+                                        <StackLayout Padding="0,0,0,0" Margin="0,0,-20,0">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="7"/>
+                                                    <ColumnDefinition Width="7"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label x:Name="lb1" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding Despesa, StringFormat='Despesa: {0}'}" FontSize="20" Margin="0"
+                                                   TextColor="LightGoldenrodYellow" FontAttributes="Bold" Padding="0,0,0,10" />
+
+                                                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Valor, StringFormat='Valor: {0}'}" FontSize="18"
+                                                   TextColor="White" Padding="0,0,0,10"/>
+
+                                                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Data, StringFormat='Data: {0}'}" FontSize="18"
+                                                   TextColor="White" FontAttributes="Bold" Padding="0,0,0,0" />
+
+                                                <Label  Grid.Row="0" Grid.Column="2" Text="←" FontSize="50" TextColor="White" FontAttributes="Bold"
+                                                    Padding="85,-40,-15,0"/>
+
+
+                                                <BoxView x:Name="boxView" Grid.RowSpan="5" Grid.Column="4" Color="White" HorizontalOptions="End" />
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </ScrollView>
+
+        <BoxView x:Name="boxViewLoading" Color="Black" Opacity="0.5" IsVisible="false"
+                 Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+
+        <ActivityIndicator x:Name="actLoading" Color="White" IsVisible="false" IsRunning="False"
+                         Scale="0.15"
+                         Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+
+    </Grid>
+</ContentPage>

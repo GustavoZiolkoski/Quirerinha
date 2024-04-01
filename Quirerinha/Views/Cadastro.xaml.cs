@@ -1,43 +1,63 @@
 using Quirerinha.Models;
 using System.Globalization;
 
-namespace Quirerinha.Views;
-
-public partial class Cadastro : ContentPage
+namespace Quirerinha.Views
 {
-    public int idCadastroValue { get; set; }
-    public Boolean TipoPagina { get; set; }
-    public Cadastro()
+    public partial class Cadastro : ContentPage
     {
-		InitializeComponent();
-        btnSalvar.Clicked += BtnSalvar_Clicked;
-        TipoPagina = true;
-    }
+        private CadastroElemento _elemento;
+        public bool TipoPagina { get; set; }
 
-    private async void BtnSalvar_Clicked(object sender, EventArgs e)
-    {
-        if (pckDespesas.SelectedItem == null)
+        public Cadastro()
         {
-            await DisplayAlert("Atenção", "Você não pode salvar seu cadastro, pois o campo despesas está vazio.", "OK");
-            return;
-        }
-        if (lbValor.Text == null)
-        {
-            await DisplayAlert("Atenção", "Você não pode salvar seu cadastro, pois o campo valor está vazio.", "OK");
-            return;
+            InitializeComponent();
+            _elemento = new CadastroElemento();
+            btnSalvar.Clicked += BtnSalvar_Clicked;
+            TipoPagina = true;
         }
 
-        CadastroElemento cadastroElemento = new CadastroElemento()
+        public Cadastro(CadastroElemento emp)
         {
-            ID = idCadastroValue,
-            Despesa = pckDespesas.SelectedItem.ToString(),
-            Valor = (string.IsNullOrEmpty(lbValor.Text)) ? "" : lbValor.Text,
-            Data = dpDataCadastro.Date.ToString("dd-MM-yyyy")
-        };
+            InitializeComponent();
+            btnSalvar.Clicked += BtnSalvar_Clicked;
+            _elemento = emp;
+            TipoPagina = false;
 
-        await App.SQLiteDbCadastroElemento.SaveItemAsync(cadastroElemento);
+            dpDataCadastro.Date = DateTime.ParseExact(emp.Data, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            pckDespesas.SelectedItem = emp.Despesa;
+            lbValor.Text = emp.Valor;
+        }
 
-        await DisplayAlert("Sucesso", "Dados salvos com sucesso.", "OK");
-        await (TipoPagina ? Navigation.PopToRootAsync() : Navigation.PopAsync());
+        private async void BtnSalvar_Clicked(object sender, EventArgs e)
+        {
+            if (pckDespesas.SelectedItem == null || string.IsNullOrEmpty(lbValor.Text))
+            {
+                await DisplayAlert("Atenção", "Você não pode salvar seu cadastro, pois algum campo está vazio.", "OK");
+                return;
+            }
+
+            double valorCadastro = double.Parse(lbValor.Text);
+            Usuarios usuario = await App.SQLiteDbUsuario.GetLastLoggedInUser();
+
+            if (usuario != null)
+            {
+                // Deduzir o valor do novo cadastro da remuneração
+                usuario.Remuneracao -= valorCadastro;
+
+                // Atualizar a remuneração do usuário no banco de dados
+                await App.SQLiteDbUsuario.SaveItemAsync(usuario);
+            }
+
+            // Salvar o novo cadastro
+            _elemento.Despesa = pckDespesas.SelectedItem.ToString();
+            _elemento.Valor = lbValor.Text;
+            _elemento.Data = dpDataCadastro.Date.ToString("dd-MM-yyyy");
+
+            await App.SQLiteDbCadastroElemento.SaveItemAsync(_elemento);
+
+            await DisplayAlert("Sucesso", "Dados salvos com sucesso.", "OK");
+            await Navigation.PopAsync();
+        }
+
     }
 }

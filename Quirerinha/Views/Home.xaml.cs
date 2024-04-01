@@ -14,6 +14,13 @@ namespace Quirerinha.Views
             btnGestao.Clicked += BtnGestao_Clicked;
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            LoadUserData();
+        }
+
         private async void LoadUserData()
         {
             try
@@ -34,7 +41,7 @@ namespace Quirerinha.Views
         }
         private void BtnGestao_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new Gestao());
+            Navigation.PushAsync(new Gestao());
         }
 
         private void BtnCadastrar_Clicked(object sender, EventArgs e)

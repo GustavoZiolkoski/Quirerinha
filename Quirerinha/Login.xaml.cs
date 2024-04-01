@@ -46,6 +46,7 @@ namespace Quirerinha.Views
                 if (confirmar)
                 {
                     App.SQLiteDbUsuario.DeleteAllUsers();
+                    App.SQLiteDbCadastroElemento.DeleteAllCadastroElemento();
                 }
 
                 if (string.IsNullOrEmpty(tbUsuario.Text) || string.IsNullOrEmpty(tbRemuneracao.Text))
