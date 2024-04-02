@@ -61,20 +61,12 @@ public partial class Gestao : ContentPage
         var item = sender as SwipeItem;
         var emp = item.CommandParameter as CadastroElemento;
 
-        CadastroElemento cadastroAntigo = await App.SQLiteDbCadastroElemento.GetItemAsync(emp.ID);
-        double valorAntigo = double.Parse(cadastroAntigo.Valor);
+        IdCadastroElemento.ValorIdCadastroElemento = emp.ID;
+        Despesa.GlobalDespesa = emp.Despesa;
+        Valor.GlobalValor = emp.Valor.ToString();
+        Data.GlobalData = emp.Data;
 
         await Navigation.PushAsync(new Cadastro(emp));
-
-        await Task.Delay(1000);
-
-        CadastroElemento cadastroAtualizado = await App.SQLiteDbCadastroElemento.GetItemAsync(emp.ID);
-        double valorNovo = double.Parse(cadastroAtualizado.Valor);
-
-        Usuarios usuario = await App.SQLiteDbUsuario.GetLastLoggedInUser();
-        usuario.Remuneracao += valorAntigo;
-
-        await App.SQLiteDbUsuario.SaveItemAsync(usuario);
     }
 
 
@@ -90,7 +82,7 @@ public partial class Gestao : ContentPage
 
         if (result)
         {
-            double valorExcluido = double.Parse(emp.Valor);
+            double valorExcluido = emp.Valor;
 
             Usuarios usuario = await App.SQLiteDbUsuario.GetLastLoggedInUser();
             usuario.Remuneracao += valorExcluido;

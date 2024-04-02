@@ -7,6 +7,7 @@ namespace Quirerinha.Views
     {
         private CadastroElemento _elemento;
         public bool TipoPagina { get; set; }
+        public double valorAntigo { get; set; }
 
         public Cadastro()
         {
@@ -25,7 +26,7 @@ namespace Quirerinha.Views
 
             dpDataCadastro.Date = DateTime.ParseExact(emp.Data, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             pckDespesas.SelectedItem = emp.Despesa;
-            lbValor.Text = emp.Valor;
+            lbValor.Text = emp.Valor.ToString();
         }
 
         private async void BtnSalvar_Clicked(object sender, EventArgs e)
@@ -39,16 +40,32 @@ namespace Quirerinha.Views
             double valorCadastro = double.Parse(lbValor.Text);
             Usuarios usuario = await App.SQLiteDbUsuario.GetLastLoggedInUser();
 
-            if (usuario != null)
-            {
-                usuario.Remuneracao -= valorCadastro;
+            if (TipoPagina == true) 
+            { 
+                if (usuario != null)
+                {
+                    usuario.Remuneracao -= valorCadastro;
 
-                await App.SQLiteDbUsuario.SaveItemAsync(usuario);
+                    await App.SQLiteDbUsuario.SaveItemAsync(usuario);
+                }
             }
+            if (TipoPagina == false) 
+            {
+                if (double.TryParse(Valor.GlobalValor, out double valorConvertido))
+                {
+                    valorAntigo = valorConvertido;
+                    usuario.Remuneracao += valorAntigo - valorCadastro;
+                    await App.SQLiteDbUsuario.SaveItemAsync(usuario);
+                }
+                else
+                {
+                    Console.WriteLine("Erro ao converter valor para double.");
+                }
 
+            }
             // Salvar o novo cadastro
             _elemento.Despesa = pckDespesas.SelectedItem.ToString();
-            _elemento.Valor = lbValor.Text;
+            _elemento.Valor = double.Parse(lbValor.Text);
             _elemento.Data = dpDataCadastro.Date.ToString("dd-MM-yyyy");
 
             await App.SQLiteDbCadastroElemento.SaveItemAsync(_elemento);

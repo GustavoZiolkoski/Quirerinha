@@ -21,7 +21,7 @@ namespace Quirerinha.Models
         [SQLite.PrimaryKey, SQLite.AutoIncrement]
         public int ID { get; set; }
         public string Despesa {  get; set; }
-        public string Valor { get; set; }
+        public double Valor { get; set; }
         public string Data {  get; set; }
     }
 }
