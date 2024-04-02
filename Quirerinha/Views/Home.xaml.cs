@@ -31,7 +31,7 @@ namespace Quirerinha.Views
                 {
                     lblUsuario.Text = usuario.Nome;
 
-                    lblRemuneracao.Text = usuario.Remuneracao.ToString("N2", CultureInfo.GetCultureInfo("pt-BR")) + " reais";
+                    lblRemuneracao.Text = "R$ " + usuario.Remuneracao.ToString("N2", CultureInfo.GetCultureInfo("pt-BR")) + " reais";
                 }
             }
             catch (Exception ex)

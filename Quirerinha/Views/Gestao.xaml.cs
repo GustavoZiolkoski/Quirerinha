@@ -61,25 +61,19 @@ public partial class Gestao : ContentPage
         var item = sender as SwipeItem;
         var emp = item.CommandParameter as CadastroElemento;
 
-        // Obtenha o cadastro atual antes de ser editado
         CadastroElemento cadastroAntigo = await App.SQLiteDbCadastroElemento.GetItemAsync(emp.ID);
         double valorAntigo = double.Parse(cadastroAntigo.Valor);
 
-        // Abra a página de edição do cadastro
         await Navigation.PushAsync(new Cadastro(emp));
 
-        // Aguarde a conclusão da edição
-        await Task.Delay(1000); // Tempo de espera para a edição ser concluída (pode ajustar conforme necessário)
+        await Task.Delay(1000);
 
-        // Obtenha o cadastro atualizado
         CadastroElemento cadastroAtualizado = await App.SQLiteDbCadastroElemento.GetItemAsync(emp.ID);
         double valorNovo = double.Parse(cadastroAtualizado.Valor);
 
-        // Atualize a remuneração do usuário
         Usuarios usuario = await App.SQLiteDbUsuario.GetLastLoggedInUser();
-        usuario.Remuneracao += (valorNovo - valorAntigo);
+        usuario.Remuneracao += valorAntigo;
 
-        // Atualize a remuneração do usuário no banco de dados
         await App.SQLiteDbUsuario.SaveItemAsync(usuario);
     }
 

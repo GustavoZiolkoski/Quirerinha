@@ -41,10 +41,8 @@ namespace Quirerinha.Views
 
             if (usuario != null)
             {
-                // Deduzir o valor do novo cadastro da remuneração
                 usuario.Remuneracao -= valorCadastro;
 
-                // Atualizar a remuneração do usuário no banco de dados
                 await App.SQLiteDbUsuario.SaveItemAsync(usuario);
             }
 

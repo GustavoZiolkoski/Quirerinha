@@ -46,7 +46,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Row="5" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" Margin="35,0,35,0"  Padding="0,0,0,50">
+            <StackLayout Grid.Row="5" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" Margin="35,45,35,0"  Padding="0,0,0,50">
                 <Frame BackgroundColor="#A9A9A9" CornerRadius="40" Padding="10" BorderColor="White">
                     <Label Text="DESPESA" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"
                HorizontalOptions="CenterAndExpand" FontSize="21" VerticalOptions="CenterAndExpand"/>
@@ -113,7 +113,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout Grid.Row="31" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" Margin="0,50,0,30">
+            <StackLayout Grid.Row="31" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" Margin="0,20,0,30">
                 <Button x:Name="btnSalvar" Text="SALVAR" FontSize="20" FontAttributes="Bold"
                 BackgroundColor="#474646" TextColor="White" BorderColor="White" BorderWidth="2"
                 HeightRequest="110" WidthRequest="110" CornerRadius="100"
