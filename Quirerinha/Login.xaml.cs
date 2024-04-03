@@ -9,6 +9,7 @@ namespace Quirerinha.Views
         public Login()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             btnLogin.Clicked += BtnLogin_Clicked;
             PreencherCamposUsuario();
         }
@@ -41,9 +42,9 @@ namespace Quirerinha.Views
         {
             try
             {
-                var confirmar = await DisplayAlert("Confirmação", "Você é um novo usuário com uma nova remuneração?", "Sim", "Não");
+                var confirmar = await DisplayAlert("Confirmação", "Você é um novo usuário com uma nova remuneração?", "Não", "Sim");
 
-                if (confirmar)
+                if (!confirmar)
                 {
                     App.SQLiteDbUsuario.DeleteAllUsers();
                     App.SQLiteDbCadastroElemento.DeleteAllCadastroElemento();

@@ -52,7 +52,7 @@ public partial class Gestao : ContentPage
         var emp = item.CommandParameter as CadastroElemento;
         await DisplayAlert("Detalhes do Cadastro",
             $" ● Despesa: {emp.Despesa}\n\n" +
-            $" ● Valor: R$ {emp.Valor} reais\n\n" +
+            $" ● Valor: R$ {emp.Valor:N2} reais\n\n" +
             $" ● Data: {emp.Data}\n",
             "OK");
     }
@@ -63,7 +63,7 @@ public partial class Gestao : ContentPage
 
         IdCadastroElemento.ValorIdCadastroElemento = emp.ID;
         Despesa.GlobalDespesa = emp.Despesa;
-        Valor.GlobalValor = emp.Valor.ToString();
+        Valor.GlobalValor = emp.Valor.ToString("N2");
         Data.GlobalData = emp.Data;
 
         await Navigation.PushAsync(new Cadastro(emp));
@@ -77,7 +77,7 @@ public partial class Gestao : ContentPage
         var emp = item.CommandParameter as CadastroElemento;
         var result = await DisplayAlert("EXCLUIR", $"VOCÊ TEM CERTEZA QUE DESEJA EXCLUIR O CADASTRO DE:\n\n" +
             $"● Despesa: {emp.Despesa}\n\n" +
-            $" ● Valor: R$ {emp.Valor} reais ?",
+            $" ● Valor: R$ {emp.Valor:N2} reais ?",
             "SIM", "NÃO");
 
         if (result)

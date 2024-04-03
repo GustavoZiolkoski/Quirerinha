@@ -87,7 +87,7 @@
                                                 <Label x:Name="lb1" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding Despesa, StringFormat='Despesa: {0}'}" FontSize="20" Margin="0"
                                                    TextColor="LightGoldenrodYellow" FontAttributes="Bold" Padding="0,0,0,10" />
 
-                                                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Valor, StringFormat='Valor: {0}'}" FontSize="18"
+                                                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Valor, StringFormat='Valor: R$ {0:N2} reais'}" FontSize="18"
                                                    TextColor="White" Padding="0,0,0,10"/>
 
                                                 <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Data, StringFormat='Data: {0}'}" FontSize="18"

@@ -3,10 +3,10 @@
     x:Class="Quirerinha.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Quirerinha"
+    xmlns:local="clr-namespace:Quirerinha.Views"
     xmlns:local2="clr-namespace:Quirerinha.Views"    
     Shell.FlyoutBehavior="Disabled"
-    BackgroundColor="#141854"
+    BackgroundColor="Black"
     Title="Quirerinha"
     TitleColor="White"
     >
@@ -17,6 +17,13 @@
     Shell.FlyoutBehavior="Flyout"
     ContentTemplate="{DataTemplate local2:Home}"
     Route="Home" />
+    <ShellContent
+    Title="Logout"
+    FlyoutItemIsVisible="true"
+    Shell.FlyoutBehavior="Flyout"
+    ContentTemplate="{DataTemplate local:Login}"
+    Route="Login" />
+
     <!--<ShellContent FlyoutItemIsVisible="true" Shell.FlyoutBehavior="Flyout" Title="Configurações" ContentTemplate="{DataTemplate local2:PaginaPrincipal}" Route="Config"/>-->
 
 
