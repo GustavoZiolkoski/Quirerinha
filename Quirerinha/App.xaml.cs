@@ -11,6 +11,8 @@ namespace Quirerinha
             InitializeComponent();
 
             MainPage = new Login();
+            // Tema claro app
+            Application.Current.UserAppTheme = AppTheme.Light;
         }
 
         public static Models.SQLiteUsuario SQLiteDbUsuario
