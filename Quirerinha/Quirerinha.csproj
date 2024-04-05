@@ -38,9 +38,13 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appiconquirerinha.png"  Color="#808080" BaseSize="32, 32" />
+		<MauiIcon Include="Resources\AppIcon\appiconquirerinha.png" Color="#808080" BaseSize="32, 32" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Images\logo_splash.png" Color="#808080" BaseSize="128,128" />
